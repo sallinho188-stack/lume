@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", system-ui, sans-serif;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --color-bg: #0e0d0b;
+  --color-surface: #171512;
+  --color-elevated: #211e1a;
+  --color-ink: #f3efe6;
+  --color-muted: #a39a8c;
+  --color-faint: #6f675c;
+  --color-line: #2e2a24;
+  --color-danger: #c46a5d;
+  --color-paper: #e7e1d4;
+  --color-paper-ink: #16130f;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+}
+
+@layer base {
+  html {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--color-bg);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  ::selection {
+    background: #3a342c;
+    color: var(--color-ink);
+  }
+}
+
+.check {
+  accent-color: var(--color-paper);
+}
+
+.stage-well {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 16rem;
+}
+
+.stage-frame {
+  width: min(100%, calc(var(--ar, 1) * min(68dvh, 680px)));
+  aspect-ratio: var(--ar, 1);
+  background: var(--color-bg);
+}
+
+.stage-frame img,
+.stage-frame video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.reveal {
+  transform-origin: left center;
+  animation: reveal 1.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes reveal {
+  0% {
+    transform: scaleX(0.08);
+    opacity: 0.4;
+  }
+  70% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0.35;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
